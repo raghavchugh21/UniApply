@@ -1,0 +1,27 @@
+{
+"0" : {
+    "18ucs195@lnmiit.ac.in" : {
+        "role": "student",
+        "first_name": "Raghav",
+        "last_name": "Chugh",
+        "Transcript": {
+            "Semester 1": {
+                "CP" : "A",
+                "DSA": "AB",
+                "DBMS" : "BC"
+            },
+            "Semester 2": {
+                "COA" : "A",
+                "OS" : "A",
+                "CN" : "AB"
+            },
+            "CGPA" : "9.14"
+        }
+    },
+    "raghavchugh@lnmiit.ac.in" : {
+        "role": "teacher",
+        "first_name": "Pandu",
+        "last_name": "Rangan"
+    }
+  }
+}

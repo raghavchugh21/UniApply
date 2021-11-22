@@ -1,0 +1,28 @@
+{
+  "course_list" : [
+    { 
+      "course_name" : "DSA",
+      "course_description": "Data Structures and Algorithms"
+    },
+    {
+      "course_name" : "COA",
+      "course_description": "Computer Architecture"
+    },
+    {
+      "course_name" : "CP",
+      "course_description": "Computer Programming"
+    },
+    { 
+      "course_name" : "DBMS",
+      "course_description": "Database Management Systems"
+    },
+    { 
+      "course_name" : "OS",
+      "course_description": "Operating System"
+    },
+    {
+      "course_name" : "CN",
+      "course_description": "Computer Networks"
+    }
+  ]
+}
