@@ -39,7 +39,6 @@ INSTALLED_APPS = [
 
     'Portal.apps.PortalConfig',
     'Account.apps.AccountConfig',
-    'django_extensions',
 
     # 3rd Party App
     'ckeditor',
