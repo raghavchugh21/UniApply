@@ -36,7 +36,7 @@ def student_registration(request):
                 form = form.save()
                 return redirect('Account:login')
             else:
-                messages.error(request, 'You are not allowed to register as a teacher!')
+                messages.error(request, 'You are not allowed to register as a student!')
         else:
             messages.error(request, 'You are not present in college database!')
     context = {
@@ -64,7 +64,7 @@ def teacher_registration(request):
                 form = form.save()
                 return redirect('Account:login')
             else:
-                messages.error(request, 'You are not allowed to register as a student!')
+                messages.error(request, 'You are not allowed to register as a teacher!')
         else:
             messages.error(request, 'You are not present in college database!')
 
