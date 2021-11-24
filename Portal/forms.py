@@ -3,6 +3,7 @@ from Portal.models import *
 import json
 import os
 from UniApply.settings import MEDIA_ROOT
+from taggit.forms import TagWidget
 
 class JobForm(forms.ModelForm):
     """
@@ -170,6 +171,10 @@ class JobEditForm(forms.ModelForm):
             "last_date",
             "org_name",
         ]
+
+        widgets = {
+            'tags': TagWidget(),
+        }
 
     def clean_job_type(self):
         job_type = self.cleaned_data.get('job_type')

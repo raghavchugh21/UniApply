@@ -30,6 +30,8 @@ def home_view(request):
     if request.is_ajax():
         page_jobs = cur_page.object_list.values()
         page_jobs_list = list(page_jobs)
+        for job in page_jobs_list:
+            job['campus_name'] = Campus.objects.get(id=job['campus_id']).get_name()
         next_page_no = cur_page.next_page_number() if cur_page.has_next() else None
         prev_page_no = cur_page.previous_page_number() if cur_page.has_previous() else None
 
@@ -387,7 +389,8 @@ def job_edit_view(request, id=id):
         }))
     context = {
         'form': form,
-        'campuses': campuses
+        'campuses': campuses,
+        'course_list': zip(get_course_names(), get_course_descs())
     }
 
     return render(request, 'Portal/job-edit.html', context)
