@@ -41,12 +41,43 @@ python manage.py collectstatic
 
 ## Features
 
-> To be added
+<br>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65908705/143215313-ac5fe95d-3189-4421-8cb4-ef683957873d.png" />
+</p>
+<br>
 
 ## Screenshots
 
-> To be added
+<details>
+  <summary> Homepage </summary>
+  <img src="https://user-images.githubusercontent.com/65908705/143259130-711339c6-07ec-485e-b775-507292a31f90.png" name="image-name">
+</details>
+
+<details>
+  <summary> Job View (as teacher)</summary>
+  <img src="https://user-images.githubusercontent.com/65908705/143260013-ef5071eb-74e8-4dea-b51b-0b034bc26a58.png" name="image-name">
+</details>
+
+<details>
+  <summary> Job View (as student) </summary>
+  <img src="https://user-images.githubusercontent.com/65908705/143260345-a69c9d2d-7df8-421f-9412-979df53ccbb9.png" name="image-name">
+</details>
+
+<details>
+  <summary> Dashboard (as student) </summary>
+  <img src="https://user-images.githubusercontent.com/65908705/143260223-6c655619-6ebd-4de5-975c-00be96676a7b.png" name="image-name">
+</details>
+
+<details>
+  <summary> Dashboard (as teacher) </summary>
+  <img src="https://user-images.githubusercontent.com/65908705/143260108-4873e631-8fe6-4c3a-ab06-3a562286af45.png" name="image-name">
+</details>
 
 ## Design
 
-> To be added
+<br>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65908705/143260575-7ab05501-db2e-4985-8fa5-f88cd8e085d5.png" />
+</p>
+<br>
