@@ -5,6 +5,7 @@ import os
 from UniApply.settings import MEDIA_ROOT
 from taggit.forms import TagWidget
 
+
 class JobForm(forms.ModelForm):
     """
         Form for teachers to post a job request on UniApply's Portal
@@ -12,6 +13,7 @@ class JobForm(forms.ModelForm):
         Application Deadline and Organisation Name as input. This job
         is listed on the Portal only after moderator's approval.
     """
+
     def __init__(self, *args, **kwargs):
         forms.ModelForm.__init__(self, *args, **kwargs)
         self.fields['title'].label = "Job Title :"
@@ -82,13 +84,13 @@ class JobForm(forms.ModelForm):
     # course_data.json which represents data retrieved from University's API
     def clean_prerequisites(self):
         prerequisites = self.cleaned_data.get('prerequisites')
-        with open(os.path.join(MEDIA_ROOT, "json/course_data.json")) as f:
-            data = json.load(f)
-            course_list = data['course_list']
-            course_names = [course['course_name'] for course in course_list]
-            for prerequisite in prerequisites:
-                if prerequisite not in course_names:
-                    raise forms.ValidationError(prerequisite + " is not a valid course")
+        f = open(os.path.join(MEDIA_ROOT, "json/course_data.json"))
+        data = json.load(f)
+        course_list = data['course_list']
+        course_names = [course['course_name'] for course in course_list]
+        for prerequisite in prerequisites:
+            if prerequisite not in course_names:
+                raise forms.ValidationError(prerequisite + " is not a valid course")
         return prerequisites
 
     def save(self, commit=True):
@@ -116,6 +118,7 @@ class JobEditForm(forms.ModelForm):
         by taking Job Title, Campus Location, Salary, Job Description,
         Application Deadline and Organisation Name as input.
     """
+
     def __init__(self, *args, **kwargs):
         forms.ModelForm.__init__(self, *args, **kwargs)
         self.fields['title'].label = "Job Title :"

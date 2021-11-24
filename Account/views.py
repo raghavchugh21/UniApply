@@ -10,6 +10,7 @@ import json
 import os
 from UniApply.settings import MEDIA_ROOT
 
+
 def get_success_url(request):
     """
         Handle success after log in
@@ -33,7 +34,7 @@ def student_registration(request):
         user_email = form.cleaned_data['email']
         if user_email in json_data['0']:
             if json_data['0'][user_email]['role'] == 'student':
-                form = form.save()
+                form.save()
                 return redirect('Account:login')
             else:
                 messages.error(request, 'You are not allowed to register as a student!')
@@ -61,7 +62,7 @@ def teacher_registration(request):
         user_email = form.cleaned_data['email']
         if user_email in json_data['0']:
             if json_data['0'][user_email]['role'] == 'teacher':
-                form = form.save()
+                form.save()
                 return redirect('Account:login')
             else:
                 messages.error(request, 'You are not allowed to register as a teacher!')
@@ -88,7 +89,7 @@ def student_edit_profile(request, id=id):
 
     if form.is_valid():
         form = form.save()
-        messages.success(request, 'Your Profile Was Successfully Updated!')
+        messages.success(request, 'Your profile has been updated successfully!')
         return redirect(reverse("Account:edit-profile", kwargs={'id': form.id}))
 
     context = {

@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
-from Account.models import User
 from Portal.forms import *
 from Portal.models import *
 from Portal.permission import *
@@ -15,10 +14,10 @@ from UniApply.settings import MEDIA_ROOT
 
 User = get_user_model()
 
+
 def home_view(request):
-
     """
-
+        Homepage View to display active jobs and provide search functionality
     """
 
     active_jobs = Job.objects.filter(is_published=True, is_closed=False).order_by('-timestamp')
@@ -53,9 +52,8 @@ def home_view(request):
 
 
 def all_jobs_view(request):
-
     """
-
+        View to display all jobs in a single container
     """
 
     active_jobs = Job.objects.filter(is_published=True, is_closed=False).order_by('-timestamp')
@@ -71,6 +69,10 @@ def all_jobs_view(request):
 
 
 def get_course_names():
+    """
+        Function to get the list of all course names from
+        course_data.json
+    """
     f = open(os.path.join(MEDIA_ROOT, "json/course_data.json"))
     data = dict(json.load(f))
     course_name_list = [course['course_name'] for course in data['course_list']]
@@ -78,6 +80,10 @@ def get_course_names():
 
 
 def get_course_descs():
+    """
+        Function to get the list of all course descriptions from
+        course_data.json
+    """
     f = open(os.path.join(MEDIA_ROOT, "json/course_data.json"))
     data = dict(json.load(f))
     course_desc_list = [course['course_description'] for course in data['course_list']]
@@ -87,7 +93,6 @@ def get_course_descs():
 @login_required(login_url=reverse_lazy('Account:login'))
 @user_is_teacher
 def create_job_view(request):
-
     """
     Provide the ability to create job post
     """
@@ -144,7 +149,8 @@ def search_result_view(request):
         job_title_or_org_name = request.GET['job_title_or_org_name']
 
         if job_title_or_org_name:
-            job_list = job_list.filter(title__icontains=job_title_or_org_name) | job_list.filter(org_name__icontains=job_title_or_org_name)
+            job_list = job_list.filter(title__icontains=job_title_or_org_name) | job_list.filter(
+                org_name__icontains=job_title_or_org_name)
 
     # location
     if 'campus' in request.GET:
@@ -261,7 +267,6 @@ def delete_job_view(request, id):
     job = get_object_or_404(Job, id=id, user=request.user.id)
 
     if job:
-
         job.delete()
         messages.success(request, 'Your Job Post was successfully deleted!')
 
@@ -287,11 +292,12 @@ def make_complete_job_view(request, id):
     return redirect('Portal:dashboard')
 
 
-
 @login_required(login_url=reverse_lazy('Account:login'))
 @user_is_teacher
 def all_applicants_view(request, id):
-
+    """
+    View to display all applicants of given job id
+    """
     all_applicants = Applicant.objects.filter(job=id)
     job = Job.objects.get(id=id)
     prereqs = job.get_prereqs()
@@ -308,11 +314,12 @@ def all_applicants_view(request, id):
 @login_required(login_url=reverse_lazy('Account:login'))
 @user_is_student
 def delete_bookmark_view(request, id):
-
+    """
+        Delete bookmark for job with given id
+    """
     job = get_object_or_404(BookmarkJob, id=id, user=request.user.id)
 
     if job:
-
         job.delete()
         messages.success(request, 'Saved Job was successfully deleted!')
 
@@ -322,7 +329,9 @@ def delete_bookmark_view(request, id):
 @login_required(login_url=reverse_lazy('Account:login'))
 @user_is_teacher
 def applicant_details_view(request, id):
-
+    """
+        View Details of Applicant ( Name, Email and Transcript )
+    """
     applicant = get_object_or_404(User, id=id)
     applicant_transcript = applicant.get_transcript()
 
@@ -337,7 +346,9 @@ def applicant_details_view(request, id):
 @login_required(login_url=reverse_lazy('Account:login'))
 @user_is_student
 def bookmark_job_view(request, id):
-
+    """
+        Bookmark Job with given id
+    """
     form = JobBookmarkForm(request.POST or None)
 
     user = get_object_or_404(User, id=request.user.id)
