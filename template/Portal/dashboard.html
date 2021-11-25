@@ -70,14 +70,9 @@
 
                                        
                                             {% if is_applicant > 1 %}
-
-
                                             {% get_total_applicant total_applicants job %} Applicants
-
                                             {% else %}
-
                                             {% get_total_applicant total_applicants job %} Applicant
-
                                             {% endif %}
 
                                         </span>
@@ -92,7 +87,7 @@
                                 {% if job.is_published == True %}
                                 {% if job.is_closed == False %}
                                 <span id="change_job_status_{{ job.id }}">
-                                            <button onclick="call_sw_alert_func('{% url 'Portal:complete' job.id %}','{{ job.id }}', 'Once Clicked, Your Post Will Marked Completed')" class="text-white btn btn-success btn-sm" >Make Close</button>
+                                            <button onclick="call_sw_alert_func('{% url 'Portal:complete' job.id %}','{{ job.id }}', 'Once Clicked, Your Post Will Marked Completed')" class="text-white btn btn-success btn-sm" >Close</button>
                                         </span>
                                 {% else %}
                                 <a class="text-white btn btn-success btn-sm"

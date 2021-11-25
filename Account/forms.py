@@ -169,7 +169,7 @@ class UserLoginForm(forms.Form):
 class StudentProfileEditForm(forms.ModelForm):
     """
         Form for students to edit their profile ( first_name and last_name )
-
+        
     """
     def __init__(self, *args, **kwargs):
         super(StudentProfileEditForm, self).__init__(*args, **kwargs)

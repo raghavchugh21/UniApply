@@ -3,6 +3,7 @@
 {% load is_job_already_applied %}
 {% load is_job_already_saved %}
 {% block content %}
+{% load get_total_applicant %}
 
 <!-- HOME -->
 <section class="section-hero overlay inner-page bg-image"
@@ -156,8 +157,10 @@
             {% endif %}
 
             {% elif user.role == 'teacher' %}
-            <button onclick="call_sw_alert_func('{% url 'Portal:delete' job.id %}','{{ job.id }}','Once Deleted, You Will Not be Able To Recover This Post!')" class="btn btn-block btn-danger btn-md">Delete</button>
 
+            <button onclick="location.href='{% url 'Portal:applicants' job.id %}'" class="btn btn-block btn-success btn-md" style="color: white">
+                View Applicants
+            </button>
             {% else %}
 
             <form action="{% url 'Portal:bookmark-job' job.id %}" method="POST">

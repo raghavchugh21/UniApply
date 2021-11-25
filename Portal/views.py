@@ -21,25 +21,44 @@ def home_view(request):
     """
 
     active_jobs = Job.objects.filter(is_published=True, is_closed=False).order_by('-timestamp')
-    paginator = Paginator(active_jobs, 3)
+    active_jobs_list = list(active_jobs.values())
+
+    if request.user.role == 'student':
+        user_courses = request.user.get_courses()
+        for i in range(len(active_jobs)):
+            active_jobs_list[i]['campus_name'] = active_jobs[i].campus.get_name()
+            prereqs = active_jobs[i].get_prereqs()
+            matched, unmatched = [], []
+            for prereq in prereqs:
+                if prereq not in user_courses:
+                    unmatched.append(prereq)
+                else:
+                    matched.append(prereq)
+            active_jobs_list[i]['matched_prereqs'] = matched
+            active_jobs_list[i]['unmatched_prereqs'] = unmatched
+            active_jobs_list[i]['prereqs'] = prereqs
+        active_jobs_list.sort(key=lambda x: -(len(x['matched_prereqs'])/(len(x['prereqs'])+0.0)) if x['prereqs'] else -1)
+    else:
+        for i in range(len(active_jobs)):
+            active_jobs_list[i]['campus_name'] = active_jobs[i].campus.get_name()
+
+    paginator = Paginator(active_jobs_list, 3)
     page_no = request.GET.get('page', None)
     cur_page = paginator.get_page(page_no)
     campuses = Campus.objects.all()
 
     if request.is_ajax():
-        page_jobs = cur_page.object_list.values()
-        page_jobs_list = list(page_jobs)
-        for job in page_jobs_list:
-            job['campus_name'] = Campus.objects.get(id=job['campus_id']).get_name()
+
         next_page_no = cur_page.next_page_number() if cur_page.has_next() else None
         prev_page_no = cur_page.previous_page_number() if cur_page.has_previous() else None
 
         return JsonResponse({
-            'page_jobs_list': page_jobs_list,
+            'page_jobs_list': cur_page.object_list,
             'cur_page_no': cur_page.number,
             'next_page_no': next_page_no,
             'no_of_page': paginator.num_pages,
-            'prev_page_no': prev_page_no
+            'prev_page_no': prev_page_no,
+            'user_role': request.user.role
         })
 
     context = {
@@ -49,6 +68,46 @@ def home_view(request):
     }
 
     return render(request, 'Portal/index.html', context)
+
+@login_required(login_url=reverse_lazy('Account:login'))
+@user_is_teacher
+def home_view_faculty(request):
+    """
+        Homepage View to display active jobs and provide search functionality
+    """
+
+    active_jobs = Job.objects.filter(is_published=True, is_closed=False, user=request.user).order_by('-timestamp')
+    active_jobs_list = list(active_jobs.values())
+
+    for i in range(len(active_jobs)):
+        active_jobs_list[i]['campus_name'] = active_jobs[i].campus.get_name()
+
+    paginator = Paginator(active_jobs_list, 3)
+    page_no = request.GET.get('page', None)
+    cur_page = paginator.get_page(page_no)
+    campuses = Campus.objects.all()
+
+    if request.is_ajax():
+
+        next_page_no = cur_page.next_page_number() if cur_page.has_next() else None
+        prev_page_no = cur_page.previous_page_number() if cur_page.has_previous() else None
+
+        return JsonResponse({
+            'page_jobs_list': cur_page.object_list,
+            'cur_page_no': cur_page.number,
+            'next_page_no': next_page_no,
+            'no_of_page': paginator.num_pages,
+            'prev_page_no': prev_page_no,
+            'user_role': request.user.role
+        })
+
+    context = {
+        'total_jobs': len(active_jobs),
+        'page_jobs': cur_page,
+        'campuses': campuses
+    }
+
+    return render(request, 'Portal/index-faculty.html', context)
 
 
 def all_jobs_view(request):
@@ -129,7 +188,6 @@ def single_job_view(request, id):
     """
 
     job = get_object_or_404(Job, id=id)
-
     context = {
         'job': job
     }
@@ -189,36 +247,21 @@ def apply_job_view(request, id):
 
     if not applicant:
         if request.method == 'POST':
-
-            user_courses = request.user.get_courses()
-            prereqs = Job.objects.get(id=id).get_prereqs()
-            for course in prereqs:
-                if course not in user_courses:
-                    messages.error(request, 'You do not meet the prerequisite requirements')
-                    return redirect(reverse("Portal:single-job", kwargs={
-                        'id': id
-                    }))
-
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = user
                 instance.save()
-
                 messages.success(
                     request, 'You have successfully applied for this job!')
                 return redirect(reverse("Portal:single-job", kwargs={
                     'id': id
                 }))
-
         else:
             return redirect(reverse("Portal:single-job", kwargs={
                 'id': id
             }))
-
     else:
-
         messages.error(request, 'You already applied for the Job!')
-
         return redirect(reverse("Portal:single-job", kwargs={
             'id': id
         }))

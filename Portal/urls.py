@@ -6,8 +6,11 @@ app_name = "Portal"
 
 urlpatterns = [
 
-    # Home Page URL
+    # Student Home Page URL
     path('', views.home_view, name='home'),
+
+    # Faculty Home Page URL
+    path('faculty/', views.home_view_faculty, name='faculty-home'),
 
     # List of All Jobs URL
     path('jobs/', views.all_jobs_view, name='job-list'),
