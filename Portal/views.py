@@ -23,7 +23,7 @@ def home_view(request):
     active_jobs = Job.objects.filter(is_published=True, is_closed=False).order_by('-timestamp')
     active_jobs_list = list(active_jobs.values())
 
-    if request.user.role == 'student':
+    if request.user.is_authenticated and request.user.role == 'student':
         user_courses = request.user.get_courses()
         for i in range(len(active_jobs)):
             active_jobs_list[i]['campus_name'] = active_jobs[i].campus.get_name()
