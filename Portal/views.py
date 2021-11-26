@@ -52,13 +52,18 @@ def home_view(request):
         next_page_no = cur_page.next_page_number() if cur_page.has_next() else None
         prev_page_no = cur_page.previous_page_number() if cur_page.has_previous() else None
 
+        try:
+            user_role = request.user.role
+        except:
+            user_role = None
+
         return JsonResponse({
             'page_jobs_list': cur_page.object_list,
             'cur_page_no': cur_page.number,
             'next_page_no': next_page_no,
             'no_of_page': paginator.num_pages,
             'prev_page_no': prev_page_no,
-            'user_role': request.user.role
+            'user_role': user_role
         })
 
     context = {

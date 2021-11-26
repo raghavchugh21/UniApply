@@ -25,20 +25,25 @@
         "Transcript": {
             "Semester 1": {
                 "CP" : "C",
-                "DSA": "B"
+                "DBMS": "AB"
             },
             "Semester 2": {
-                "COA" : "A",
-                "OS" : "A",
+                "COA" : "D",
+                "OS" : "B",
                 "CN" : "AB"
             },
-            "CGPA" : "9.14"
+            "CGPA" : "7.60"
         }
     },
     "raghavchugh@lnmiit.ac.in" : {
         "role": "teacher",
         "first_name": "Raghav",
         "last_name": "Chugh"
+    },
+    "pandurangan@lnmiit.ac.in" : {
+        "role": "teacher",
+        "first_name": "Pandu",
+        "last_name": "Rangan"
     }
   }
 }
