@@ -34,10 +34,12 @@
               <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
 
                 {% if user.is_authenticated and user.role == 'teacher'  %}
+
+                <li class="mr-4">Hi, {{user.first_name}}!</li>
+
                 <a href="{% url 'Portal:create-job' %}"
                    class="js-clone-nav pr-3 btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span
                         class="mr-2 icon-add"></span>Post a Job</a>
-
 
                 <li class="pr-3 has-children">
                   <a>Dashboard</a>
@@ -48,6 +50,8 @@
                 </li>
 
                 {% elif user.is_authenticated and user.role == 'student'  %}
+
+                <li class="mr-4">Hi, {{user.first_name}}!</li>
 
                 <li class="pr-3 has-children">
                   <a>Profile</a>
