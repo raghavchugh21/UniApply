@@ -81,3 +81,10 @@ python manage.py collectstatic
   <img src="https://user-images.githubusercontent.com/65908705/143260575-7ab05501-db2e-4985-8fa5-f88cd8e085d5.png" />
 </p>
 <br>
+
+## Future Scope
+
+<ul>
+  <li> Using resume section for Students to find matching jobs for students (using keywords) so that they can be brought on top </li>
+  <li> Using further intelligence to recommend related jobs below a certain job to a student </li>
+</ul>
