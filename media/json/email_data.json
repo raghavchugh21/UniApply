@@ -1,5 +1,21 @@
 {
 "0" : {
+    "18ucs105@lnmiit.ac.in" : {
+        "role": "student",
+        "first_name": "Sakshi",
+        "last_name": "Sharma",
+        "Transcript": {
+            "Semester 1": {
+                "CP" : "A",
+                "OS" : "AB"
+            },
+            "Semester 2": {
+                "COA" : "A",
+                "CN" : "A"
+            },
+            "CGPA" : "9.75"
+        }
+    },
     "18ucs195@lnmiit.ac.in" : {
         "role": "student",
         "first_name": "Raghav",
