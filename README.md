@@ -1,3 +1,4 @@
+
 # UniApply
 
 My Microsoft Engage FTE 2021 submission on Problem Statement :
@@ -7,6 +8,30 @@ My Microsoft Engage FTE 2021 submission on Problem Statement :
 My Submission :
 
 **UniApply :** Functional prototype of a job portal which can be used by the students and faculty members of the respective university where the Faculties can post on-campus jobs (Eg. Research Assistant, Teaching Assistant) on the portal and the student can directly apply for the job position from the job portal. College grades have also been integrated in this portal as they are usually very helpful in the selection of candidates for these jobs.
+
+## Hosted Web App
+
+Usage : [Demo Video](https://drive.google.com/file/d/1FTKojVdqK17zoDeFvDVP-0dpWymgOVpd/view)
+
+Admin ( Moderator ) Account :
+```
+Email : admin@uniapply.com
+Password : supersecure
+```
+
+Teacher Account :
+```
+Email : pandurangan@lnmiit.ac.in
+Password : supersecure
+```
+
+Student Account :
+```
+Email : 18ucs105@lnmiit.ac.in
+Password : supersecure
+```
+
+Try it out! <br> [Link to Web App](https://uniapply.herokuapp.com/)
 
 ## Installation
 
