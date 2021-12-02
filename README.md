@@ -52,6 +52,8 @@ Install Requirements
 pip install -r requirements.txt
 ```
 
+The course list and email data used is fetched from <b>media/json/course_data.json</b> and <b>media/json/email_data.json</b>
+
 Database
 ```
 Set database configuration from settings.py
@@ -60,7 +62,7 @@ Set database configuration from settings.py
 Migrate the database and collect the static files
 ```
 python manage.py makemigrations
-python manage,py migrate
+python manage.py migrate
 python manage.py collectstatic
 ```
 
