@@ -1,7 +1,7 @@
 
 # UniApply
 
-My Microsoft Engage FTE 2021 submission on Problem Statement :
+This repository contains my Microsoft Engage 2021 submission on Problem Statement :
 
 **Build a functional prototype of a platform that gives students an array of digital academic and social tools to stay engaged with their studies, peers and broader university community during pandemic.**
 
