@@ -31,6 +31,8 @@ Email : 18ucs105@lnmiit.ac.in
 Password : supersecure
 ```
 
+The course list and email data used is fetched from <b>media/json/course_data.json</b> and <b>media/json/email_data.json</b>
+
 Try it out! <br> [Link to Web App](https://uniapply.herokuapp.com/)
 
 ## Installation
@@ -51,8 +53,6 @@ Install Requirements
 ```
 pip install -r requirements.txt
 ```
-
-The course list and email data used is fetched from <b>media/json/course_data.json</b> and <b>media/json/email_data.json</b>
 
 Database
 ```
