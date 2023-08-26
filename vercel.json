@@ -23,6 +23,5 @@
         "src": "/(.*)",
         "dest": "uniapply/wsgi.py"
       }
-    ],
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+    ]
   }
