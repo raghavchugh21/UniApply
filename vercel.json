@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "uniapply/wsgi.py",
+        "src": "UniApply/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
       },
@@ -21,7 +21,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "uniapply/wsgi.py"
+        "dest": "UniApply/wsgi.py"
       }
     ]
   }
