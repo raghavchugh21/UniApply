@@ -8,8 +8,7 @@ django-js-asset==1.2.2
 django-taggit==1.2.0
 django-user-visit==0.4
 gunicorn==20.0.4
-psycopg2-binary
-psycopg2==2.9.7
+psycopg2-binary==2.9.7
 pytz==2019.3
 sqlparse==0.3.1
 ua-parser==0.10.0
