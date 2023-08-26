@@ -25,7 +25,7 @@ SECRET_KEY = 'etdq)uvq=t0rc&ams5_ovn6w8bcwknjj0u97*(#n^(76x*+dr1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['uniapply.herokuapp.com']
+ALLOWED_HOSTS = ['.vercel.app']
 
 # Application definition
 
